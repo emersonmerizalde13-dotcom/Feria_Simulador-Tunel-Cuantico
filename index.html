@@ -1,0 +1,418 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simulador del Efecto Túnel Cuántico | UNEMI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- PANTALLA 1: BIENVENIDA -->
+<section id="bienvenida" class="pantalla bienvenida">
+  <div class="agua"></div>
+  <div class="burbujas" aria-hidden="true"></div>
+
+  <div class="intro">
+    <div class="eyebrow">
+      UNIVERSIDAD ESTATAL DE MILAGRO · UNEMI
+    </div>
+
+    <div class="atom">⚛</div>
+
+    <h1>
+      EXPLORA EL UNIVERSO<br>
+      <em>CUÁNTICO</em>
+    </h1>
+
+    <p>
+      ¿Puede un electrón atravesar una barrera que
+      clásicamente no podría superar? Descúbrelo
+      experimentando con energía, ondas y probabilidades.
+    </p>
+
+    <button class="btn principal grande" id="empezar">
+      EMPEZAR →
+    </button>
+
+    <small>
+      Experiencia interactiva de aprendizaje · Mecánica cuántica
+    </small>
+  </div>
+</section>
+
+<!-- PANTALLA 2: INTEGRANTES -->
+<section id="creditos" class="pantalla creditos oculto">
+  <div class="credit-card">
+    <div class="eyebrow">
+      UNIVERSIDAD ESTATAL DE MILAGRO
+    </div>
+
+    <div class="atom small">⚛</div>
+
+    <h2>
+      Simulador Interactivo del<br>
+      Efecto Túnel Cuántico
+    </h2>
+
+    <p>
+      Una herramienta educativa para investigar la
+      transmisión y reflexión de electrones ante
+      una barrera de potencial.
+    </p>
+
+    <div class="credit-grid">
+      <div>
+        <span>FACULTAD</span>
+        <strong>Educación</strong>
+      </div>
+
+      <div>
+        <span>CARRERA</span>
+        <strong>Pedagogía de las Ciencias Experimentales</strong>
+      </div>
+
+      <div>
+        <span>ASIGNATURA</span>
+        <strong>Diseño de Simulación y Animaciones</strong>
+      </div>
+
+      <div>
+        <span>INTEGRANTES</span>
+        <strong>Merizalde y Pino</strong>
+      </div>
+
+      <div>
+        <span>DOCENTE</span>
+        <strong>Msc. Gabriela Barrera</strong>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn secundario" id="volverInicio">
+        ← VOLVER
+      </button>
+      <button class="btn principal" id="entrar">
+        INGRESAR AL SIMULADOR →
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- PANTALLA 3: SIMULADOR -->
+<section id="simulador" class="pantalla simulador oculto">
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon">⚛</span>
+      <div>
+        <b>LABORATORIO CUÁNTICO</b>
+        <small>UNEMI · Simulación educativa</small>
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <span class="status">Modelo 1D</span>
+      <button id="regresar" class="btn minimal">
+        ← Inicio
+      </button>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <main class="graficas">
+
+      <div class="page-heading">
+        <div>
+          <span class="eyebrow">SIMULACIÓN INTERACTIVA</span>
+          <h2>Efecto túnel cuántico</h2>
+          <p>
+            Explora cómo cambia el comportamiento de
+            un electrón al modificar una barrera de potencial.
+          </p>
+        </div>
+        <span class="chip" id="regimen">
+          E &lt; V₀ · Túnel cuántico
+        </span>
+      </div>
+
+      <!-- GRÁFICA 1 -->
+      <article class="plot-card">
+        <div class="plot-heading">
+          <div>
+            <span class="number">01</span>
+            <h3>Energía y potencial</h3>
+          </div>
+          <div class="legend">
+            <span>Barrera V(x)</span>
+            <span>Energía E</span>
+          </div>
+        </div>
+        <canvas id="grafEnergia"></canvas>
+      </article>
+
+      <!-- GRÁFICA 2 -->
+      <article class="plot-card">
+        <div class="plot-heading">
+          <div>
+            <span class="number">02</span>
+            <h3>Función de onda ψ(x)</h3>
+          </div>
+          <div class="legend">
+            <span>Parte real</span>
+            <span>Parte imaginaria</span>
+          </div>
+        </div>
+        <canvas id="grafOnda"></canvas>
+      </article>
+
+     
+<!-- GRÁFICA 3: PAQUETE DE ONDAS -->
+<article class="plot-card">
+  <div class="plot-heading">
+    <div>
+      <span class="number">03</span>
+      <h3>
+        Evolución del paquete de ondas |ψ(x,t)|²
+      </h3>
+    </div>
+
+    <span class="chip">
+      SIMULACIÓN DINÁMICA
+    </span>
+  </div>
+
+  <canvas
+    id="grafDensidad"
+    aria-label="Densidad de probabilidad del paquete de ondas"
+  ></canvas>
+
+  <p class="tiny">
+    Observa cómo el paquete de ondas se aproxima
+    a la barrera y evoluciona en componentes
+    reflejada y transmitida.
+  </p>
+</article>
+
+
+      <div class="disclaimer">
+        Modelo de dispersión estacionaria en una barrera
+        rectangular unidimensional. La animación representa
+        la evolución de fase de la función de onda.
+      </div>
+
+
+<!-- MATERIAL DIDÁCTICO ADICIONAL: VARIABLE, RETOS Y TEORÍA -->
+<section class="didactica" aria-labelledby="tituloDidactica">
+  <h2 id="tituloDidactica">Aprende y experimenta con el efecto túnel</h2>
+  <article class="side-card didactica-card">
+    <h3><span class="number">04</span> Variables iniciales y ejemplo paso a paso</h3>
+    <details open><summary>Variables del simulador</summary>
+      <ul>
+        <li><strong>Energía del electrón (E):</strong> energía de la partícula incidente, medida en electronvoltios (eV). Determina cómo se compara con la barrera.</li>
+        <li><strong>Altura de la barrera (V₀):</strong> energía potencial dentro de la barrera, en eV.</li>
+        <li><strong>Anchura de la barrera (a):</strong> distancia que ocupa la barrera, en nanómetros (nm).</li>
+        <li><strong>Transmisión (T):</strong> probabilidad de atravesar la barrera, expresada como porcentaje.</li>
+        <li><strong>Reflexión (R):</strong> probabilidad de regresar hacia el lado de entrada, expresada como porcentaje.</li>
+      </ul>
+    </details>
+    <details open><summary>Ejemplo resuelto con los valores iniciales</summary>
+      <ol>
+        <li><strong>Configura:</strong> E = 1,00 eV; V₀ = 2,00 eV; a = 0,50 nm.</li>
+        <li><strong>Compara energías:</strong> E &lt; V₀, por lo que clásicamente el electrón no podría superar la barrera.</li>
+        <li><strong>Calcula el decaimiento:</strong> κ = √[2m(V₀ − E)] / ℏ ≈ 5,12 nm⁻¹, de modo que κa ≈ 2,56.</li>
+        <li><strong>Calcula la transmisión:</strong> T = [1 + V₀² senh²(κa) / (4E(V₀ − E))]⁻¹ ≈ 0,02355 = 2,35 %.</li>
+        <li><strong>Calcula la reflexión:</strong> R = 1 − T ≈ 0,97645 = 97,65 %. Comprueba que T + R = 1.</li>
+      </ol>
+      <p class="tiny">Este ejemplo utiliza la solución estacionaria para una barrera rectangular ideal. El paquete animado contiene varias energías y puede mostrar proporciones diferentes.</p>
+    </details>
+  </article>
+  <article class="side-card didactica-card">
+    <h3><span class="number">05</span> Retos de aprendizaje</h3>
+    <div class="reto"><h4>Reto 1 · Exploración básica</h4><p>Usa E = 1 eV, V₀ = 2 eV y a = 0,5 nm. Inicia la animación. ¿Qué sucede cuando el paquete llega a la barrera?</p><details><summary>Ver explicación</summary><p>La mayor parte del paquete se refleja; una fracción puede transmitirse por efecto túnel. La tercera gráfica muestra cómo se separan ambas partes en el tiempo.</p></details></div>
+    <div class="reto"><h4>Reto 2 · Predicción</h4><p>Mantén E y V₀ constantes. Aumenta la anchura de 0,5 nm a 1,0 nm. ¿Aumentará o disminuirá T?</p><details><summary>Ver explicación</summary><p>Cuando E &lt; V₀, una barrera más ancha reduce normalmente la transmisión de forma muy marcada porque la amplitud dentro de la región prohibida decae exponencialmente.</p></details></div>
+    <div class="reto"><h4>Reto 3 · Comparación controlada</h4><p>Mantén V₀ = 2 eV y a = 0,5 nm. Compara E = 0,5 eV con E = 1,5 eV. ¿Qué cambia?</p><details><summary>Ver explicación</summary><p>Al aumentar la energía hacia la altura de la barrera, la probabilidad de transmisión suele aumentar. Compara las barras de T y R sin cambiar las otras variables.</p></details></div>
+    <div class="reto"><h4>Reto 4 · Energía superior a la barrera</h4><p>Configura E = 4 eV y V₀ = 2 eV. ¿La reflexión debe ser exactamente cero?</p><details><summary>Ver explicación</summary><p>No necesariamente. Aunque E &gt; V₀, una onda cuántica puede reflejarse parcialmente en los cambios de potencial; también pueden aparecer oscilaciones de transmisión según la anchura.</p></details></div>
+    <div class="reto"><h4>Reto 5 · Interpretación científica</h4><p>¿Por qué la gráfica 2 cambia de fase y la gráfica 3 muestra un paquete que se desplaza?</p><details><summary>Ver explicación</summary><p>La gráfica 2 representa un estado estacionario: cambia su fase temporal, pero su densidad no cambia. La gráfica 3 resuelve numéricamente la evolución temporal de un paquete de ondas mediante split-step Fourier.</p></details></div>
+  </article>
+  <article class="side-card didactica-card">
+    <h3><span class="number">06</span> Conceptos y fórmulas de apoyo</h3>
+    <details><summary>Conceptos fundamentales</summary><p>El efecto túnel es la transmisión cuántica a través de una barrera cuando la energía de la partícula es inferior a su altura. La función de onda ψ describe el estado cuántico y |ψ|² es una densidad de probabilidad, no una trayectoria clásica.</p></details>
+    <details><summary>Símbolos, unidades y variables</summary><p><strong>E, V₀:</strong> energía y altura de barrera (eV). <strong>a, x:</strong> anchura y posición (nm). <strong>t:</strong> tiempo (fs). <strong>ψ:</strong> función de onda. <strong>T y R:</strong> probabilidades adimensionales. <strong>m:</strong> masa del electrón. <strong>ℏ:</strong> constante reducida de Planck.</p></details>
+    <details><summary>Fórmulas utilizadas</summary><p><strong>Ecuación de Schrödinger dependiente del tiempo:</strong> iℏ ∂ψ/∂t = −(ℏ²/2m) ∂²ψ/∂x² + V(x)ψ.</p><p><strong>Barrera rectangular:</strong> V(x) = V₀ si 0 ≤ x ≤ a; V(x) = 0 fuera.</p><p><strong>Para E &lt; V₀:</strong> κ = √[2m(V₀−E)]/ℏ; T = [1 + V₀² senh²(κa)/(4E(V₀−E))]⁻¹; R = 1 − T.</p><p><strong>Probabilidad:</strong> P(x,t) = |ψ(x,t)|². Para una onda normalizada, la integral de |ψ|² en todo el espacio es 1.</p></details>
+    <details><summary>Errores frecuentes</summary><ul><li>Confundir una probabilidad de transmisión con la certeza de que un electrón atraviesa la barrera.</li><li>Interpretar la función de onda como una trayectoria física.</li><li>Creer que la gráfica estacionaria y el paquete dinámico son la misma representación.</li><li>Confundir los porcentajes de T y R estacionarios con los resultados integrados de un paquete de energías diversas.</li></ul></details>
+    <details><summary>Supuestos y límites del modelo</summary><p>Se considera un electrón no relativista en una dimensión, con una barrera rectangular ideal y sin absorción. Los valores T y R se calculan para una energía definida; la tercera gráfica simula un paquete gaussiano con dispersión de energías. Los bordes del dominio numérico pueden producir efectos artificiales en tiempos prolongados.</p></details>
+    <details><summary>Aplicaciones reales</summary><p>El efecto túnel contribuye al funcionamiento del microscopio de efecto túnel (STM), ciertos diodos túnel y dispositivos electrónicos de escala nanométrica. Estas aplicaciones utilizan estructuras físicas más complejas que la barrera ideal del simulador.</p></details>
+  </article>
+</section>
+
+    </main>
+
+    <!-- PANEL LATERAL -->
+    <aside class="sidebar">
+
+      <div class="side-card">
+        <div class="side-heading">
+          <h3>Panel de control</h3>
+          <span>AJUSTES</span>
+        </div>
+
+        <label for="energia">
+          Energía del electrón
+          <output id="energiaValor">1.00 eV</output>
+        </label>
+        <input id="energia" type="range"
+               min="0.1" max="5" step="0.05" value="1">
+        <div class="range-labels">
+          <span>0.1 eV</span><span>5 eV</span>
+        </div>
+
+        <label for="barrera">
+          Altura de la barrera
+          <output id="barreraValor">2.00 eV</output>
+        </label>
+        <input id="barrera" type="range"
+               min="0.5" max="10" step="0.05" value="2">
+        <div class="range-labels">
+          <span>0.5 eV</span><span>10 eV</span>
+        </div>
+
+        <label for="ancho">
+          Anchura de la barrera
+          <output id="anchoValor">0.50 nm</output>
+        </label>
+        <input id="ancho" type="range"
+               min="0.1" max="2" step="0.05" value="0.5">
+        <div class="range-labels">
+          <span>0.1 nm</span><span>2 nm</span>
+        </div>
+
+        <div class="divider"></div>
+
+        <h4>Componentes visibles</h4>
+
+        <label class="check">
+          <input id="mostrarReal" type="checkbox" checked>
+          Parte real de ψ
+        </label>
+
+        <label class="check">
+          <input id="mostrarImag" type="checkbox" checked>
+          Parte imaginaria de ψ
+        </label>
+
+        <label class="check">
+          <input id="mostrarDensidad" type="checkbox" checked>
+          Densidad de probabilidad
+        </label>
+
+        <div class="divider"></div>
+
+        <h4>Animación</h4>
+        <div class="play-controls">
+          <button id="iniciar" class="btn play">▶ Iniciar</button>
+          <button id="pausar" class="btn outline">Ⅱ Pausar</button>
+          <button id="reiniciar" class="btn outline">↺ Reiniciar</button>
+        </div>
+
+        <p class="tiny">
+          La fase animada no altera T ni R.
+        </p>
+      </div>
+
+
+      <!-- EVALUACIÓN EDUCATIVA -->
+      <div class="side-card">
+        <h3>Comprueba lo aprendido</h3>
+        <p class="tiny">Diez preguntas sobre el efecto túnel cuántico.</p>
+        <button id="abrirEvaluacion" class="btn principal" type="button">📝 Realizar evaluación</button>
+      </div>
+
+      <!-- RESULTADOS -->
+      <div class="side-card">
+        <div class="side-heading">
+          <h3>Resultados</h3>
+          <span>EN TIEMPO REAL</span>
+        </div>
+
+        <div class="result">
+          <span>Transmisión (T)</span>
+          <strong id="transmision">2.354712 %</strong>
+          <div class="meter">
+            <div id="barraT" class="fillT"></div>
+          </div>
+        </div>
+
+        <div class="result">
+          <span>Reflexión (R)</span>
+          <strong id="reflexion">97.645288 %</strong>
+          <div class="meter">
+            <div id="barraR" class="fillR"></div>
+          </div>
+        </div>
+
+        <p class="formula">T + R = 1</p>
+      </div>
+
+      <!-- EXPLICACIÓN -->
+      <div class="side-card educational">
+        <h3>¿Qué estás observando?</h3>
+        <p id="explicacion">
+          Cuando la energía del electrón es menor que
+          la barrera, existe una probabilidad no nula
+          de transmisión.
+        </p>
+
+        <button class="btn minimal" id="reiniciarTodo">
+          Restablecer parámetros ↺
+        </button>
+      </div>
+
+    </aside>
+  </div>
+
+  <footer class="footer">
+    UNEMI · Facultad de Educación · Merizalde y Pino
+  </footer>
+
+</section>
+
+
+<!-- Evaluación integrada, sin abandonar el simulador -->
+<div id="evaluacionModal" class="eval-overlay oculto" role="dialog" aria-modal="true" aria-labelledby="evalTitulo">
+  <section class="eval-panel">
+    <div class="eval-header">
+      <h2 id="evalTitulo">📝 Evaluación del efecto túnel cuántico</h2>
+      <button id="cerrarEvaluacion" class="btn minimal" type="button" aria-label="Cerrar evaluación">✕ Cerrar</button>
+    </div>
+    <div id="evalRegistro">
+      <p>Completa tus datos para comenzar. Son 10 preguntas, con hasta dos intentos por pregunta.</p>
+      <form id="evalFormulario">
+        <label for="evalNombre">Nombre completo</label>
+        <input id="evalNombre" type="text" maxlength="100" autocomplete="name" required>
+        <label for="evalEdad">Edad</label>
+        <input id="evalEdad" type="number" min="5" max="120" required>
+        <button class="btn principal" type="submit">Comenzar evaluación</button>
+      </form>
+    </div>
+    <div id="evalPregunta" class="oculto">
+      <p id="evalProgreso" class="eval-muted"></p>
+      <h3 id="evalEnunciado"></h3>
+      <div id="evalOpciones" class="eval-opciones"></div>
+      <p id="evalMensaje" role="status" aria-live="polite"></p>
+      <button id="evalSiguiente" class="btn principal oculto" type="button">Siguiente pregunta →</button>
+    </div>
+    <div id="evalResultado" class="oculto">
+      <h3>Evaluación finalizada</h3>
+      <p id="evalResumen"></p>
+      <p class="eval-muted">Los datos se guardan solamente en este navegador, no se envían a un servidor.</p>
+      <button id="evalRepetir" class="btn principal" type="button">Realizar otra evaluación</button>
+    </div>
+  </section>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
